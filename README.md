@@ -23,7 +23,7 @@ combining them again.
 
 ### `orbifold.sage`
 
-Orbifold cohomology and trace formula. Computes symmetry groups G_A,
+Orbifold cohomology and trace formula. Computes symmetry groups,
 lambda-sector bases, and Frobenius trace contributions for weighted
 Fermat hypersurfaces.
 
