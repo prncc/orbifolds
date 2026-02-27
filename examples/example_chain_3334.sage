@@ -11,40 +11,9 @@ Usage: sage examples/example_chain_3334.sage
 """
 
 import os
-import itertools
 
 load("orbifold.sage")
 load("orbifold_display.sage")
-
-
-# --- Brute-force point counting ---
-
-def apply_W_to_point(A, point):
-    total = 0
-    for row in A:
-        term = 1
-        for i, x in enumerate(point):
-            term *= x ** row[i]
-        total += term
-    return total
-
-
-def count_points_projective(A, p):
-    n = A.nrows()
-    count = 0
-    coords = list(range(p))
-    for first_nonzero in range(n):
-        prefix = [0] * first_nonzero + [1]
-        n_free = n - first_nonzero - 1
-        if n_free == 0:
-            if apply_W_to_point(A, prefix) % p == 0:
-                count += 1
-        else:
-            for suffix in itertools.product(*([coords] * n_free)):
-                point = prefix + list(suffix)
-                if apply_W_to_point(A, point) % p == 0:
-                    count += 1
-    return count
 
 
 # --- Setup ---

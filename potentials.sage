@@ -613,3 +613,28 @@ def get_weights(A):
         Integer vector of variable weights.
     """
     return get_d(A) * A.inverse() * vector([1] * A.nrows())
+
+
+def count_points_projective(A, p, f=1):
+    """Count F_{p^f}-rational points on {W_A = 0} in P^{n-1}.
+
+    Uses Sage's ProjectiveSpace and subscheme machinery for direct
+    enumeration of points.
+
+    Args:
+        A: Square integer matrix defining the potential W_A.
+        p: Prime characteristic.
+        f: Extension degree (default 1). Counts over F_{p^f}.
+
+    Returns:
+        Number of F_{p^f}-rational points on the projective hypersurface.
+    """
+    K = GF(p**f, 'a')
+    Proj = ProjectiveSpace(A.nrows() - 1, K)
+    x = Proj.gens()
+    W_A = sum(
+        prod(x[i]**A[j][i] for i in range(A.ncols()))
+        for j in range(A.nrows())
+    )
+    X = Proj.subscheme([W_A])
+    return X.count_points(1)[0]

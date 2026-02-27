@@ -161,38 +161,3 @@ class DworkQuintic:
 
             nu_int = Integer(nu.real().round())
             return (nu_int - 1) // (q - 1)
-
-
-# =============================================================================
-# Demonstration / Execution Block
-# =============================================================================
-# if __name__ == '__main__':
-#     def naive_point_count(p, psi_val):
-#         """Brute force projective point checking to verify the Gauss sum formulas."""
-#         K = GF(p)
-#         psi = K(psi_val)
-#         count = 0
-#         for x in itertools.product(K, repeat=5):
-#             if all(xi == 0 for xi in x):
-#                 continue
-#             if sum(xi**5 for xi in x) == K(5) * psi * prod(x):
-#                 count += 1
-#         return count // (p - 1)
-
-#     # Example 1: p=7 (5 DOES NOT divide p-1)
-#     p1, psi1 = 7, 0
-#     dq1 = DworkQuintic(p1)
-#     fast_pts1 = dq1.count_points(psi1)
-
-#     print(f"[Case 5 ∤ p-1] Computing for p={p1}, psi={psi1}...")
-#     print(f"  Fast Gauss Sum Formula : {fast_pts1}")
-#     print(f"  Naive Enumeration      : {naive_point_count(p1, psi1)}\n")
-
-#     # Example 2: p=11 (5 DOES divide p-1)
-#     p2, psi2 = 11, 0
-#     dq2 = DworkQuintic(p2)
-#     fast_pts2 = dq2.count_points(psi2)
-
-#     print(f"[Case 5 | p-1] Computing for p={p2}, psi={psi2}...")
-#     print(f"  Fast Gauss Sum Formula : {fast_pts2}")
-#     print(f"  Naive Enumeration      : {naive_point_count(p2, psi2)}\n")
